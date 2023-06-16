@@ -19,8 +19,16 @@ export const clearResults = () => {
 // acc: 15 / acc + cur.length = 18 / newTitle = ['Pasta', 'with', 'tomato']
 // acc: 18 / acc + cur.length = 24 / newTitle = ['Pasta', 'with', 'tomato']
 
+export const highlightSelected = id => {
+  const resultsArr = Array.from(document.querySelectorAll('.results__link'));
+  resultsArr.forEach(el => {
+    el.classList.remove('result__link--active');
+  });
 
-const limitRecipeTitle = (title, limit = 17) => {
+  document.querySelector(`.results__link[href*="${id}"]`).classList.add('result__link--active');
+}
+
+export const limitRecipeTitle = (title, limit = 17) => {
   const newTitle = [];
   if (title.length > limit) {
     title.split(' ').reduce((acc, cur) => {
